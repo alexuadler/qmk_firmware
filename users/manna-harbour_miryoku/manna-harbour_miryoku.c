@@ -6,7 +6,7 @@
 #include QMK_KEYBOARD_H
 
 #include "manna-harbour_miryoku.h"
-
+#include "features/achordion.h"
 
 // Additional Features double tap guard
 
@@ -17,14 +17,14 @@ MIRYOKU_LAYER_LIST
 #undef MIRYOKU_X
 };
 
-void u_td_fn_boot(tap_dance_state_t *state, void *user_data) {
+void u_td_fn_boot(qk_tap_dance_state_t *state, void *user_data) { \
   if (state->count == 2) {
     reset_keyboard();
   }
 }
 
 #define MIRYOKU_X(LAYER, STRING) \
-void u_td_fn_U_##LAYER(tap_dance_state_t *state, void *user_data) { \
+void u_td_fn_U_##LAYER(qk_tap_dance_state_t *state, void *user_data) { \
   if (state->count == 2) { \
     default_layer_set((layer_state_t)1 << U_##LAYER); \
   } \
@@ -32,7 +32,7 @@ void u_td_fn_U_##LAYER(tap_dance_state_t *state, void *user_data) { \
 MIRYOKU_LAYER_LIST
 #undef MIRYOKU_X
 
-tap_dance_action_t tap_dance_actions[] = {
+qk_tap_dance_action_t tap_dance_actions[] = {
     [U_TD_BOOT] = ACTION_TAP_DANCE_FN(u_td_fn_boot),
 #define MIRYOKU_X(LAYER, STRING) [U_TD_U_##LAYER] = ACTION_TAP_DANCE_FN(u_td_fn_U_##LAYER),
 MIRYOKU_LAYER_LIST
@@ -58,6 +58,10 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     NULL
 };
 
+//void pointing_device_init_user(void) {
+//   set_auto_mouse_layer(U_MOUSE);
+//   set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+//}
 
 // thumb combos
 
@@ -89,3 +93,61 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(thumbcombos_fun, KC_APP)
 };
 #endif
+
+
+enum custom_keycodes {
+    RPIPE = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case RPIPE:
+        if (record->event.pressed) {
+            // when keycode RPIPE is pressed
+            SEND_STRING("%>%");
+        } else {
+            // when keycode RPIPE is released
+        }
+        break;
+    }
+    return true;
+};
+
+// achordion
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+    switch (tap_hold_keycode) {
+        case FUN_DEL:
+        case NUM_BSP:
+        case SYM_ENT:
+        case MO_TAB:
+        case NAV_SPC:
+        case MO_SLSH:
+        case BU_Z:
+            return 0;
+
+        default:
+            return 800;
+    }
+
+    return 800;
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+  switch (mod) {
+    case MOD_LSFT:
+    case MOD_RSFT:
+    case MOD_LCTL:
+    case MOD_RCTL:
+      return true;  // Eagerly apply Shift and Ctrl mods.
+
+    default:
+      return false;
+  }
+}

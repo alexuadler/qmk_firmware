@@ -24,6 +24,23 @@ MIRYOKU_LAYER_LIST
 #define U_NA KC_NO // present but not available for use
 #define U_NU KC_NO // available but not used
 
+#define FUN_DEL LT(U_FUN,KC_DEL)
+#define NUM_BSP LT(U_NUM,KC_BSPC)
+#define SYM_ENT LT(U_SYM,KC_ENT)
+#define MO_TAB LT(U_MOUSE,KC_TAB)
+#define NAV_SPC LT(U_NAV,KC_SPC)
+#define MO_SLSH LT(U_MOUSE,KC_SLSH)
+#define BU_Z LT(U_BUTTON,KC_Z)
+
+#define HOME_A LGUI_T(KC_A)
+#define HOME_S LALT_T(KC_S)
+#define HOME_D LCTL_T(KC_D)
+#define HOME_F LSFT_T(KC_F)
+#define HOME_J LSFT_T(KC_J)
+#define HOME_K LCTL_T(KC_K)
+#define HOME_L LALT_T(KC_L)
+#define HOME_QUOT LGUI_T(KC_QUOT)
+
 #if defined (MIRYOKU_CLIPBOARD_FUN)
   #define U_RDO KC_AGIN
   #define U_PST KC_PSTE
