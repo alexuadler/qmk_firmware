@@ -12,7 +12,7 @@
 #define MIRYOKU_LAYER_BASE \
 KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,              \
 HOME_A,          HOME_S,            HOME_D,            HOME_F,              KC_G,              KC_H,              HOME_J,          HOME_K,            HOME_L,         HOME_QUOT,   \
-BU_Z,              ALGR_T(KC_X),      KC_C,              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           ALGR_T(KC_DOT),    MO_SLSH,\
+BU_Z,              ALGR_T(KC_X),      KC_C,              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           KC_DOT,    MO_SLSH,\
 U_NP,              U_NP,              FUN_DEL,           NUM_BSP,         SYM_ENT,           MO_TAB,            NAV_SPC,  LT(U_MEDIA,KC_ESC),U_NP,              U_NP
 
 #define MIRYOKU_LAYER_MOUSE \

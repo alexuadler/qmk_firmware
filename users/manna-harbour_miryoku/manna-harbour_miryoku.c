@@ -72,6 +72,12 @@ const uint16_t PROGMEM thumbcombos_nav[] = {KC_ENT, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM thumbcombos_mouse[] = {KC_BTN2, KC_BTN1, COMBO_END};
 const uint16_t PROGMEM thumbcombos_media[] = {KC_MSTP, KC_MPLY, COMBO_END};
 const uint16_t PROGMEM thumbcombos_num[] = {KC_0, KC_MINS, COMBO_END};
+// my combos
+const uint16_t PROGMEM lclick[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM rclick[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM mclick[] = {KC_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM whlup[] = {KC_Y, KC_H, COMBO_END};
+const uint16_t PROGMEM whldn[] = {KC_H, KC_N, COMBO_END};
   #if defined (MIRYOKU_LAYERS_FLIP)
 const uint16_t PROGMEM thumbcombos_sym[] = {KC_UNDS, KC_LPRN, COMBO_END};
   #else
@@ -85,6 +91,13 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(thumbcombos_mouse, KC_BTN3),
   COMBO(thumbcombos_media, KC_MUTE),
   COMBO(thumbcombos_num, KC_DOT),
+  // my combos
+  COMBO(lclick, KC_BTN1),
+  COMBO(rclick, KC_BTN2),
+  COMBO(mclick, KC_BTN3),
+  COMBO(whlup, KC_WH_U),
+  COMBO(whldn, KC_WH_D),
+
   #if defined (MIRYOKU_LAYERS_FLIP)
   COMBO(thumbcombos_sym, KC_RPRN),
   #else
