@@ -17,10 +17,17 @@
 KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,              \
 HOME_A,          HOME_S,            HOME_D,            HOME_F,              KC_G,              KC_H,              HOME_J,          HOME_K,            HOME_L,         HOME_QUOT,   \
 BU_Z,              ALGR_T(KC_X),      KC_C,              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           KC_DOT,    MO_SLSH,\
-U_NP,              U_NP,              FUN_DEL,           NUM_BSP,         SYM_ENT,           MO_TAB,            NAV_SPC,  LT(U_MEDIA,KC_ESC),U_NP,              U_NP
+U_NP,              U_NP,              MED_ESC,           NAV_SPC,         MO_TAB,           SYM_ENT,            NUM_BSP,  LT(U_FUN,KC_DEL), U_NP,              U_NP
 
 #define MIRYOKU_LAYER_MOUSE \
 TD(U_TD_BOOT),     TD(U_TD_U_TAP),    TD(U_TD_U_EXTRA),  TD(U_TD_U_BASE),   U_NA,              S_D_MOD,              DPI_MOD,           U_NU,           U_NU,           U_NU,           \
 KC_LGUI,         KC_LALT,           KC_LCTL,           KC_LSFT,           U_NA,                   KC_WH_U,              U_NU,           SNIPING,           U_NU,           U_NU,           \
-U_NA,              KC_ALGR,           TD(U_TD_U_SYM),    TD(U_TD_U_MOUSE),  U_NA,              U_NU,             KC_BTN1,           KC_BTN2,           DRGSCRL,         U_NU,             \
+U_UND,              U_CUT,             U_CPY,             U_PST,            U_RDO,              U_NU,             KC_BTN1,           KC_BTN2,           DRGSCRL,         U_NU,             \
 U_NP,              U_NP,              SNIPING,              KC_BTN1,           KC_BTN2,              TD(U_TD_U_BASE),           TD(U_TD_U_MOUSE),           U_NP,           U_NP,              U_NP
+
+#define MIRYOKU_LAYER_BUTTON \
+U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
+KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           U_NU,              U_NU,              KC_LSFT,           KC_LCTL,           KC_LALT,           KC_LGUI,           \
+U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_RDO,             U_PST,             U_CPY,             U_CUT,             U_NP,             \
+U_NP,              U_NP,              KC_BTN3,           KC_BTN1,           KC_BTN2,           KC_BTN2,           KC_BTN1,           KC_BTN3,           U_NP,              U_NP
+
