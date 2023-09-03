@@ -27,10 +27,17 @@ MIRYOKU_LAYER_LIST
 #define FUN_DEL LT(U_FUN,KC_DEL)
 #define NUM_BSP LT(U_NUM,KC_BSPC)
 #define SYM_ENT LT(U_SYM,KC_ENT)
-#define MO_TAB LT(U_MOUSE,KC_TAB)
+#define MO_TAB LT(U_MOUSE,KC_TAB) 
 #define NAV_SPC LT(U_NAV,KC_SPC)
+#define MED_ESC LT(U_MEDIA,KC_ESC)
+#define NUM_SPC LT(U_NUM,KC_SPC)
+#define SYM_TAB LT(U_SYM,KC_TAB)
+#define MO_ENT LT(U_MOUSE,KC_ENT) 
+#define NAV_BSP LT(U_NAV,KC_BSPC)
 #define MO_SLSH LT(U_MOUSE,KC_SLSH)
 #define BU_Z LT(U_BUTTON,KC_Z)
+#define BU_SLSH LT(U_BUTTON,KC_SLSH)
+
 
 #define HOME_A LGUI_T(KC_A)
 #define HOME_S LALT_T(KC_S)
@@ -40,6 +47,10 @@ MIRYOKU_LAYER_LIST
 #define HOME_K LCTL_T(KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_QUOT LGUI_T(KC_QUOT)
+
+#define HOME_Z LALT_T(KC_Z)
+#define HOME_X LCTL_T(KC_X)
+#define HOME_C LSFT_T(KC_C)
 
 #if defined (MIRYOKU_CLIPBOARD_FUN)
   #define U_RDO KC_AGIN

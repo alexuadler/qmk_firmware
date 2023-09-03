@@ -141,6 +141,11 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
         case SYM_ENT:
         case MO_TAB:
         case NAV_SPC:
+        case MED_ESC:
+        case NUM_SPC:
+        case SYM_TAB:
+        case MO_ENT: 
+        case NAV_BSP:
         case MO_SLSH:
         case BU_Z:
             return 0;
