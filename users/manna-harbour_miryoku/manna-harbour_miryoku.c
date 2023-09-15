@@ -158,9 +158,9 @@ combo_t key_combos[COMBO_COUNT] = {
   [WS_LCBR] = COMBO(ws_lcbr, KC_LCBR),
   [OL_RCBR] = COMBO(ol_rcbr, KC_RCBR),
   // gaming stuff
+  [GAMING_ZERO] = COMBO(gaming_zero, KC_0),
   [RF_G] = COMBO(rf_g, KC_G),
   [FV_B] = COMBO(fv_b, KC_B),
-  [GAMING_ZERO] = COMBO(gaming_zero, KC_0),
   [GAMING_RSFT] = COMBO(gaming_rsft, KC_RSFT),
   [GAMING_RCTL] = COMBO(gaming_rctl, KC_RCTL),
   [GAMING_RALT] = COMBO(gaming_ralt, KC_RALT),
@@ -176,6 +176,19 @@ combo_t key_combos[COMBO_COUNT] = {
   [THUMBCOMBOS_FUN] = COMBO(thumbcombos_fun, KC_APP)
 };
 #endif
+
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+  //disable and enable some left hand combos when on game layer 
+    switch (combo_index) {
+        case RF_LPRN ... OL_RCBR:
+            if (layer_state_is(U_TAP)) {
+                return false;
+            }
+    }
+    return true;
+}
+
 
 
 enum custom_keycodes {
