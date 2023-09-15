@@ -111,21 +111,21 @@ const uint16_t PROGMEM mclick[] = {KC_M, KC_DOT, COMBO_END};
 const uint16_t PROGMEM whlup[] = {KC_Y, KC_H, COMBO_END};
 const uint16_t PROGMEM whldn[] = {KC_H, KC_N, COMBO_END};
 // base stuff
-const uint16_t PROGMEM rf_lprn[] = {KC_R, KC_F, COMBO_END};
-const uint16_t PROGMEM uj_rprn[] = {KC_U, KC_J, COMBO_END};
-const uint16_t PROGMEM de_lbrc[] = {KC_D, KC_E, COMBO_END};
-const uint16_t PROGMEM ki_rbrc[] = {KC_K, KC_I, COMBO_END};
-const uint16_t PROGMEM ws_lcbr[] = {KC_W, KC_S, COMBO_END};
-const uint16_t PROGMEM ol_rcbr[] = {KC_O, KC_L, COMBO_END};
+const uint16_t PROGMEM rf_lprn[] = {KC_R, HOME_F, COMBO_END};
+const uint16_t PROGMEM uj_rprn[] = {KC_U, HOME_J, COMBO_END};
+const uint16_t PROGMEM de_lbrc[] = {HOME_D, KC_E, COMBO_END};
+const uint16_t PROGMEM ki_rbrc[] = {HOME_K, KC_I, COMBO_END};
+const uint16_t PROGMEM ws_lcbr[] = {KC_W, HOME_S, COMBO_END};
+const uint16_t PROGMEM ol_rcbr[] = {KC_O, HOME_L, COMBO_END};
 // gaming 
 const uint16_t PROGMEM rf_g[] = {KC_R, KC_F, COMBO_END};
-const uint16_t PROGMEM fv_b[] = {KC_R, KC_F, COMBO_END};
+const uint16_t PROGMEM fv_b[] = {KC_V, KC_F, COMBO_END};
 const uint16_t PROGMEM gaming_zero[] = {KC_GRV, KC_1, COMBO_END};
 const uint16_t PROGMEM gaming_rsft[] = {KC_L, KC_QUOT, COMBO_END};
 const uint16_t PROGMEM gaming_rctl[] = {KC_DOT, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM gaming_ralt[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM gaming_esc[] = {KC_T, KC_Q, COMBO_END};
-const uint16_t PROGMEM gaming_tab[] = {U_NAV, KC_SPC, COMBO_END};
+const uint16_t PROGMEM gaming_tab[] = {MO(U_NAV), KC_SPC, COMBO_END};
 
 
 
