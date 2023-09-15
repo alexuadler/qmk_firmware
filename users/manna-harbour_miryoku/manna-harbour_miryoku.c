@@ -105,6 +105,36 @@ const uint16_t PROGMEM thumbcombos_sym[] = {KC_RPRN, KC_UNDS, COMBO_END};
   #endif
 const uint16_t PROGMEM thumbcombos_fun[] = {KC_SPC, KC_TAB, COMBO_END};
 
+enum combo_events {
+    THUMBCOMBOS_BASE_RIGHT,
+    THUMBCOMBOS_BASE_LEFT,
+    THUMBCOMBOS_NAV,
+    THUMBCOMBOS_MOUSE,
+    THUMBCOMBOS_MEDIA,
+    THUMBCOMBOS_NUM,
+    LCLICK,
+    RCLICK,
+    MCLICK,
+    WHLUP,
+    WHLDN,
+    RF_LPRN,
+    UJ_RPRN,
+    DE_LBRC,
+    KI_RBRC,
+    WS_LCBR,
+    OL_RCBR,
+    RF_G,
+    FV_B,
+    GAMING_ZERO,
+    GAMING_RSFT,
+    GAMING_RCTL,
+    GAMING_RALT,
+    GAMING_ESC,
+    GAMING_TAB,
+    THUMBCOMBOS_SYM,
+    THUMBCOMBOS_FUN
+};
+
 
 combo_t key_combos[COMBO_COUNT] = {
   [THUMBCOMBOS_BASE_RIGHT] = COMBO(thumbcombos_base_right, LT(U_FUN, KC_DEL)),
@@ -127,22 +157,22 @@ combo_t key_combos[COMBO_COUNT] = {
   [WS_LCBR] = COMBO(ws_lcbr, KC_LCBR),
   [OL_RCBR] = COMBO(ol_rcbr, KC_RCBR),
   // gaming stuff
-  [RF_G] = combo(rf_g, KC_G),
-  [FV_B] = combo(fv_b, KC_B),
-  [GAMING_ZERO] = combo(gaming_zero, KC_0),
-  [GAMING_RSFT] = combo(gaming_rsft, KC_RSFT),
-  [GAMING_RCTL] = combo(gaming_rctl, KC_RCTL),
-  [GAMING_RALT] = combo(gaming_ralt, KC_RALT),
-  [GAMING_ESC] = combo(gaming_esc, KC_ESC),
-  [GAMING_TAB] = combo(gaming_tab, KC_TAB),
+  [RF_G] = COMBO(rf_g, KC_G),
+  [FV_B] = COMBO(fv_b, KC_B),
+  [GAMING_ZERO] = COMBO(gaming_zero, KC_0),
+  [GAMING_RSFT] = COMBO(gaming_rsft, KC_RSFT),
+  [GAMING_RCTL] = COMBO(gaming_rctl, KC_RCTL),
+  [GAMING_RALT] = COMBO(gaming_ralt, KC_RALT),
+  [GAMING_ESC] = COMBO(gaming_esc, KC_ESC),
+  [GAMING_TAB] = COMBO(gaming_tab, KC_TAB),
 
 
   #if defined (MIRYOKU_LAYERS_FLIP)
-  COMBO(thumbcombos_sym, KC_RPRN),
+  [THUMBCOMBOS_SYM] = COMBO(thumbcombos_sym, KC_RPRN),
   #else
-  COMBO(thumbcombos_sym, KC_LPRN),
+  [THUMBCOMBOS_SYM] = COMBO(thumbcombos_sym, KC_LPRN),
   #endif
-  COMBO(thumbcombos_fun, KC_APP)
+  [THUMBCOMBOS_FUN] = COMBO(thumbcombos_fun, KC_APP)
 };
 #endif
 
@@ -159,9 +189,9 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
   //disable and enable some left hand combos when on game layer 
     switch (combo_index) {
         case RF_G ... GAMING_TAB:
-            return layer_state_is(_TAP);
-        case RF_LPRN ... OL_RCBR:a
-            return !layer_state_is(_TAP);
+            return default_layer_state_is(U_TAP);
+        case RF_LPRN ... OL_RCBR:
+            return !default_layer_state_is(U_TAP);
     }
     return true;
 }

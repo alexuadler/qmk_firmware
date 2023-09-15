@@ -31,13 +31,6 @@ KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           U_NU
 U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_RDO,             U_PST,             U_CPY,             U_CUT,             U_NP,             \
 U_NP,              U_NP,              KC_BTN3,           KC_BTN1,           KC_BTN2,           KC_BTN2,           KC_BTN1,           KC_BTN3,           U_NP,              U_NP
 
-// #define MIRYOKU_LAYER_TAP \
-// KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,              \
-// KC_A,              KC_S,              KC_D,              KC_F,              KC_G,              KC_H,              KC_J,          KC_K,            KC_L,          KC_QUOT,   \
-// LSFT_T(KC_Z),    LCTL_T(KC_X),      LALT_T(KC_C),              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           KC_DOT,    BU_SLSH,\
-// U_NP,              U_NP,              LT(U_NUM,KC_ESC),           KC_SPC,         KC_TAB,            SYM_ENT,            NUM_BSP,  LT(U_FUN,KC_DEL), U_NP,              U_NP
-
-
 #define MIRYOKU_LAYER_TAP \
 KC_T,      KC_Q,              KC_W,              KC_E,              KC_R,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,              \
 KC_LSFT,   KC_A,              KC_S,              KC_D,              KC_F,              KC_H,              KC_J,          KC_K,            KC_L,          KC_QUOT,   \
