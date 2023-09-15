@@ -73,30 +73,69 @@ const uint16_t PROGMEM thumbcombos_mouse[] = {KC_BTN2, KC_BTN1, COMBO_END};
 const uint16_t PROGMEM thumbcombos_media[] = {KC_MSTP, KC_MPLY, COMBO_END};
 const uint16_t PROGMEM thumbcombos_num[] = {KC_0, KC_MINS, COMBO_END};
 // my combos
+// mousing
 const uint16_t PROGMEM lclick[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM rclick[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM mclick[] = {KC_M, KC_DOT, COMBO_END};
 const uint16_t PROGMEM whlup[] = {KC_Y, KC_H, COMBO_END};
 const uint16_t PROGMEM whldn[] = {KC_H, KC_N, COMBO_END};
+// base stuff
+const uint16_t PROGMEM rf_lprn[] = {KC_R, KC_F, COMBO_END};
+const uint16_t PROGMEM uj_rprn[] = {KC_U, KC_J, COMBO_END};
+const uint16_t PROGMEM de_lbrc[] = {KC_D, KC_E, COMBO_END};
+const uint16_t PROGMEM ki_rbrc[] = {KC_K, KC_I, COMBO_END};
+const uint16_t PROGMEM ws_lcbr[] = {KC_W, KC_S, COMBO_END};
+const uint16_t PROGMEM ol_rcbr[] = {KC_O, KC_L, COMBO_END};
+// gaming 
+const uint16_t PROGMEM rf_g[] = {KC_R, KC_F, COMBO_END};
+const uint16_t PROGMEM fv_b[] = {KC_R, KC_F, COMBO_END};
+const uint16_t PROGMEM gaming_zero[] = {KC_GRV, KC_1, COMBO_END};
+const uint16_t PROGMEM gaming_rsft[] = {KC_L, KC_QUOT, COMBO_END};
+const uint16_t PROGMEM gaming_rctl[] = {KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM gaming_ralt[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM gaming_esc[] = {KC_T, KC_Q, COMBO_END};
+const uint16_t PROGMEM gaming_tab[] = {U_NAV, KC_SPC, COMBO_END};
+
+
+
   #if defined (MIRYOKU_LAYERS_FLIP)
 const uint16_t PROGMEM thumbcombos_sym[] = {KC_UNDS, KC_LPRN, COMBO_END};
   #else
 const uint16_t PROGMEM thumbcombos_sym[] = {KC_RPRN, KC_UNDS, COMBO_END};
   #endif
 const uint16_t PROGMEM thumbcombos_fun[] = {KC_SPC, KC_TAB, COMBO_END};
+
+
 combo_t key_combos[COMBO_COUNT] = {
-  COMBO(thumbcombos_base_right, LT(U_FUN, KC_DEL)),
-  COMBO(thumbcombos_base_left, LT(U_MEDIA, KC_ESC)),
-  COMBO(thumbcombos_nav, KC_DEL),
-  COMBO(thumbcombos_mouse, KC_BTN3),
-  COMBO(thumbcombos_media, KC_MUTE),
-  COMBO(thumbcombos_num, KC_DOT),
+  [THUMBCOMBOS_BASE_RIGHT] = COMBO(thumbcombos_base_right, LT(U_FUN, KC_DEL)),
+  [THUMBCOMBOS_BASE_LEFT] = COMBO(thumbcombos_base_left, LT(U_MEDIA, KC_ESC)),
+  [THUMBCOMBOS_NAV] = COMBO(thumbcombos_nav, KC_DEL),
+  [THUMBCOMBOS_MOUSE] = COMBO(thumbcombos_mouse, KC_BTN3),
+  [THUMBCOMBOS_MEDIA] = COMBO(thumbcombos_media, KC_MUTE),
+  [THUMBCOMBOS_NUM] = COMBO(thumbcombos_num, KC_DOT),
   // my combos
-  COMBO(lclick, KC_BTN1),
-  COMBO(rclick, KC_BTN2),
-  COMBO(mclick, KC_BTN3),
-  COMBO(whlup, KC_WH_U),
-  COMBO(whldn, KC_WH_D),
+  [LCLICK] = COMBO(lclick, KC_BTN1),
+  [RCLICK] = COMBO(rclick, KC_BTN2),
+  [MCLICK] = COMBO(mclick, KC_BTN3),
+  [WHLUP] = COMBO(whlup, KC_WH_U),
+  [WHLDN] = COMBO(whldn, KC_WH_D),
+  // base stuff
+  [RF_LPRN] = COMBO(rf_lprn, KC_LPRN),
+  [UJ_RPRN] = COMBO(uj_rprn, KC_RPRN),
+  [DE_LBRC] = COMBO(de_lbrc, KC_LBRC),
+  [KI_RBRC] = COMBO(ki_rbrc, KC_RBRC),
+  [WS_LCBR] = COMBO(ws_lcbr, KC_LCBR),
+  [OL_RCBR] = COMBO(ol_rcbr, KC_RCBR),
+  // gaming stuff
+  [RF_G] = combo(rf_g, KC_G),
+  [FV_B] = combo(fv_b, KC_B),
+  [GAMING_ZERO] = combo(gaming_zero, KC_0),
+  [GAMING_RSFT] = combo(gaming_rsft, KC_RSFT),
+  [GAMING_RCTL] = combo(gaming_rctl, KC_RCTL),
+  [GAMING_RALT] = combo(gaming_ralt, KC_RALT),
+  [GAMING_ESC] = combo(gaming_esc, KC_ESC),
+  [GAMING_TAB] = combo(gaming_tab, KC_TAB),
+
 
   #if defined (MIRYOKU_LAYERS_FLIP)
   COMBO(thumbcombos_sym, KC_RPRN),
@@ -106,6 +145,26 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(thumbcombos_fun, KC_APP)
 };
 #endif
+
+
+//Callback to replicate layer_state_is(layer) for default layer state
+layer_state_t default_layer_state;
+
+bool default_layer_state_is(layer_state_t layer) {
+    return (default_layer_state & ((layer_state_t)1 << layer)) != 0;
+}
+
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+  //disable and enable some left hand combos when on game layer 
+    switch (combo_index) {
+        case RF_G ... GAMING_TAB:
+            return layer_state_is(_TAP);
+        case RF_LPRN ... OL_RCBR:a
+            return !layer_state_is(_TAP);
+    }
+    return true;
+}
 
 
 enum custom_keycodes {
