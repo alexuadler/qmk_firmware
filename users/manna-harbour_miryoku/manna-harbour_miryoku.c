@@ -65,6 +65,37 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 
 // thumb combos
 
+enum combo_events {
+    THUMBCOMBOS_BASE_RIGHT,
+    THUMBCOMBOS_BASE_LEFT,
+    THUMBCOMBOS_NAV,
+    THUMBCOMBOS_MOUSE,
+    THUMBCOMBOS_MEDIA,
+    THUMBCOMBOS_NUM,
+    LCLICK,
+    RCLICK,
+    MCLICK,
+    WHLUP,
+    WHLDN,
+    RF_LPRN,
+    UJ_RPRN,
+    DE_LBRC,
+    KI_RBRC,
+    WS_LCBR,
+    OL_RCBR,
+    RF_G,
+    FV_B,
+    GAMING_ZERO,
+    GAMING_RSFT,
+    GAMING_RCTL,
+    GAMING_RALT,
+    GAMING_ESC,
+    GAMING_TAB,
+    THUMBCOMBOS_SYM,
+    THUMBCOMBOS_FUN
+};
+
+
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
 const uint16_t PROGMEM thumbcombos_base_right[] = {LT(U_SYM, KC_ENT), LT(U_NUM, KC_BSPC), COMBO_END};
 const uint16_t PROGMEM thumbcombos_base_left[] = {LT(U_NAV, KC_SPC), LT(U_MOUSE, KC_TAB), COMBO_END};
@@ -104,36 +135,6 @@ const uint16_t PROGMEM thumbcombos_sym[] = {KC_UNDS, KC_LPRN, COMBO_END};
 const uint16_t PROGMEM thumbcombos_sym[] = {KC_RPRN, KC_UNDS, COMBO_END};
   #endif
 const uint16_t PROGMEM thumbcombos_fun[] = {KC_SPC, KC_TAB, COMBO_END};
-
-enum combo_events {
-    THUMBCOMBOS_BASE_RIGHT,
-    THUMBCOMBOS_BASE_LEFT,
-    THUMBCOMBOS_NAV,
-    THUMBCOMBOS_MOUSE,
-    THUMBCOMBOS_MEDIA,
-    THUMBCOMBOS_NUM,
-    LCLICK,
-    RCLICK,
-    MCLICK,
-    WHLUP,
-    WHLDN,
-    RF_LPRN,
-    UJ_RPRN,
-    DE_LBRC,
-    KI_RBRC,
-    WS_LCBR,
-    OL_RCBR,
-    RF_G,
-    FV_B,
-    GAMING_ZERO,
-    GAMING_RSFT,
-    GAMING_RCTL,
-    GAMING_RALT,
-    GAMING_ESC,
-    GAMING_TAB,
-    THUMBCOMBOS_SYM,
-    THUMBCOMBOS_FUN
-};
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -175,26 +176,6 @@ combo_t key_combos[COMBO_COUNT] = {
   [THUMBCOMBOS_FUN] = COMBO(thumbcombos_fun, KC_APP)
 };
 #endif
-
-
-//Callback to replicate layer_state_is(layer) for default layer state
-layer_state_t default_layer_state;
-
-bool default_layer_state_is(layer_state_t layer) {
-    return (default_layer_state & ((layer_state_t)1 << layer)) != 0;
-}
-
-
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-  //disable and enable some left hand combos when on game layer 
-    switch (combo_index) {
-        case RF_G ... GAMING_TAB:
-            return default_layer_state_is(U_TAP);
-        case RF_LPRN ... OL_RCBR:
-            return !default_layer_state_is(U_TAP);
-    }
-    return true;
-}
 
 
 enum custom_keycodes {
