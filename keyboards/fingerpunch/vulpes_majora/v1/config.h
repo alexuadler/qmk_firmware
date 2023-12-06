@@ -17,6 +17,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+// default but used in macros
+#undef TAPPING_TERM
+#define TAPPING_TERM 180
+#define PERMISSIVE_HOLD
+
+// Prevent normal rollover on alphas from accidentally triggering mods.
+#define IGNORE_MOD_TAP_INTERRUPT
+
 #define FP_SR595_MATRIX_DEBUG
 
 /* key matrix size */
@@ -117,3 +125,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #include "keyboards/fingerpunch/src/config_post.h"
+
+#define HOME_A LGUI_T(KC_A)
+#define HOME_S LALT_T(KC_S)
+#define HOME_D LCTL_T(KC_D)
+#define HOME_F LSFT_T(KC_F)
+#define HOME_J LSFT_T(KC_J)
+#define HOME_K LCTL_T(KC_K)
+#define HOME_L LALT_T(KC_L)
+#define HOME_QUOT LGUI_T(KC_QUOT)
+
+#define U_RDO C(KC_Y)
+#define U_PST C(KC_V)
+#define U_CPY C(KC_C)
+#define U_CUT C(KC_X)
+#define U_UND C(KC_Z)
+
+#define BU_Z LT(BUTTON,KC_Z)

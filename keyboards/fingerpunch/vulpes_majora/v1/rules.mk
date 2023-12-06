@@ -4,6 +4,9 @@ AUDIO_DRIVER = pwm_hardware
 HAPTIC_ENABLE ?= no
 HAPTIC_DRIVER = DRV2605L
 
+CAPS_WORD_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+
 ifeq ($(strip $(CIRQUE_ENABLE)), yes)
    MOUSEKEY_ENABLE := yes  # not required, but enabling for mouse button keys
    POINTING_DEVICE_ENABLE := yes

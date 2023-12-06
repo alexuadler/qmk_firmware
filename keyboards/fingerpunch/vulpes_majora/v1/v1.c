@@ -76,3 +76,12 @@ led_config_t g_led_config = { {
 } };
 
 #endif
+
+// shift functions
+
+const key_override_t capsword_key_override = ko_make_basic(MOD_MASK_SHIFT, CW_TOGG, KC_CAPS);
+
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &capsword_key_override,
+    NULL
+};
