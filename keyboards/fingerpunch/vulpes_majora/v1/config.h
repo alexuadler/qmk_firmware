@@ -25,6 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
 
+#define COMBO_COUNT 14
+#define COMBO_SHOULD_TRIGGER
+
 #define FP_SR595_MATRIX_DEBUG
 
 /* key matrix size */
