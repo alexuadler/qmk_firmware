@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_SYM] = LAYOUT_vulpes_majora(
   XXXXXXX,    _______,    _______,    _______,    _______,    _______,                                        KC_LCBR,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RCBR,    XXXXXXX,
-  XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,     EE_CLR,                                        KC_PLUS,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_COLN,    XXXXXXX,
+  XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    EE_CLR,                                         KC_PLUS,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_COLN,    XXXXXXX,
   XXXXXXX,    KC_CAPS,    _______,    _______,    QK_RBT,     QK_BOOT,                                        KC_PIPE,    KC_EXLM,    KC_AT,      KC_HASH,    KC_TILD,    XXXXXXX,
                                       _______,    _______,    _______,    _______,     _______,    _______,   KC_UNDS,    KC_LPRN,    KC_RPRN,
               _______,                _______,    _______,    _______,                                        _______,    _______,    _______,                _______,
@@ -120,7 +120,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ), 
 
 [_GAME] =  LAYOUT_vulpes_majora(
-  XXXXXXX,    _______,    _______,    _______,    _______,    _______,                                        _______,    _______,    _______,    _______,    _______,    XXXXXXX,
   XXXXXXX,    KC_T,       KC_Q,       KC_W,       KC_E,       KC_R,                                           KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       XXXXXXX,
   XXXXXXX,    KC_LSFT,    KC_A,       KC_S,       KC_D,       KC_F,                                           KC_H,       KC_J,       KC_K,       KC_L,       KC_QUOT,    XXXXXXX,
   XXXXXXX,    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,                                           KC_N,       KC_M,       KC_COMM,    KC_DOT,     _______,    XXXXXXX,
