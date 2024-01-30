@@ -152,3 +152,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 
+#define FP_POINTING_SNIPING_LAYER_ENABLE
+#undef FP_POINTING_SNIPING_LAYER
+#define FP_POINTING_SNIPING_LAYER 2
+
+#undef FP_POINTING_SCROLLING_DPI
+#define FP_POINTING_SCROLLING_DPI 1
