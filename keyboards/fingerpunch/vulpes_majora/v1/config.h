@@ -19,13 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // default but used in macros
 #undef TAPPING_TERM
-#define TAPPING_TERM 180
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 170
+// #define PERMISSIVE_HOLD
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
 #define IGNORE_MOD_TAP_INTERRUPT
 
-#define COMBO_COUNT 14
+#define COMBO_COUNT 15
 #define COMBO_SHOULD_TRIGGER
 
 #define FP_SR595_MATRIX_DEBUG
@@ -133,10 +133,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOME_S LALT_T(KC_S)
 #define HOME_D LCTL_T(KC_D)
 #define HOME_F LSFT_T(KC_F)
-#define HOME_J LSFT_T(KC_J)
-#define HOME_K LCTL_T(KC_K)
-#define HOME_L LALT_T(KC_L)
-#define HOME_QUOT LGUI_T(KC_QUOT)
+#define HOME_J RSFT_T(KC_J)
+#define HOME_K RCTL_T(KC_K)
+#define HOME_L RALT_T(KC_L)
+#define HOME_QUOT RGUI_T(KC_QUOT)
 
 #define U_RDO C(KC_Y)
 #define U_PST C(KC_V)
