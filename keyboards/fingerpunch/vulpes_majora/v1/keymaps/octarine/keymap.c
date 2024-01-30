@@ -1,5 +1,9 @@
 #include QMK_KEYBOARD_H
+#include "features/achordion.h"
 
+void matrix_scan_user(void) {
+  achordion_task();
+}
 
 //#define CHARYBDIS_AUTO_SNIPING_ON_LAYER _BUTTON
 
@@ -7,11 +11,11 @@
 enum layer_names {
     _QWERTY,
     _GAME,
+    _BUTTON,
     _MEDIA,
     _NAV,
     _NUM,
     _SYM,
-    _BUTTON,
     _GAMENUM,
     _FUN
 };
@@ -31,6 +35,9 @@ enum layer_names {
 #define ENT_FUN LT(FUN,KC_ENT)
 #define SPC_NAV LT(NAV,KC_SPC)
 #define DEL_MED LT(MEDIA,KC_DEL)
+#define MO_SNP FP_SNIPE_MOMENT
+#define S_DPI_U FP_SNIPE_DPI_UP
+#define S_DPI_D FP_SNIPE_DPI_DN 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -69,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [_NAV] = LAYOUT_vulpes_majora( 
-  XXXXXXX,    KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_INS,                                         _______,    TG(_GAME),  _______,    _______,    _______,    XXXXXXX,
+  XXXXXXX,    KC_PGUP,    KC_HOME,    KC_UP,      KC_END,     KC_INS,                                         _______,    DF(_GAME),  _______,    DF(_QWERTY),_______,    XXXXXXX,
   XXXXXXX,    KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RGHT,    CW_TOGG,                                        _______,    KC_LSFT,    KC_LCTL,    KC_LALT,    KC_LGUI,    XXXXXXX,
   XXXXXXX,    _______,    KC_PGDN,    KC_PGUP,    _______,    _______,                                        _______,    _______,    _______,    _______,    _______,    XXXXXXX,
                                       KC_DEL,     KC_BSPC,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    _______,
@@ -103,9 +110,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX,    KC_LGUI,    KC_LALT,    KC_LCTL,    KC_LSFT,    _______,                                        _______,    KC_RSFT,    KC_RCTL,    KC_RALT,    KC_RGUI,    XXXXXXX,
   XXXXXXX,    U_UND,      U_CUT,      U_CPY,      U_PST,      U_RDO,                                          U_RDO,      U_PST,      U_CPY,      U_CUT,      U_UND,      XXXXXXX,
                                       KC_MS_BTN3, KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, KC_MS_BTN2,
-              _______,                _______,    _______,    _______,                                        _______,    _______,    _______,                _______,
-  _______,    _______,    _______,                                                                                                                _______,    _______,    _______,
-              _______,                                                                                                                                        _______
+              DT_UP,                  _______,    _______,    _______,                                        _______,    _______,    _______,                S_DPI_U,
+  _______,    DT_PRNT,    _______,                                                                                                                _______,    _______,    _______,
+              DT_DOWN,                                                                                                                                        S_DPI_D
 ),
 
 
@@ -122,11 +129,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_GAME] =  LAYOUT_vulpes_majora(
   XXXXXXX,    KC_T,       KC_Q,       KC_W,       KC_E,       KC_R,                                           KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       XXXXXXX,
   XXXXXXX,    KC_LSFT,    KC_A,       KC_S,       KC_D,       KC_F,                                           KC_H,       KC_J,       KC_K,       KC_L,       KC_QUOT,    XXXXXXX,
-  XXXXXXX,    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,                                           KC_N,       KC_M,       KC_COMM,    KC_DOT,     _______,    XXXXXXX,
+  XXXXXXX,    KC_LCTL,    KC_Z,       KC_X,       KC_C,       KC_V,                                           KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    XXXXXXX,
                                       GAMENUM,    KC_SPC,     NAV,        KC_MS_BTN3, KC_MS_BTN1, KC_MS_BTN2, ENT_FUN,    KC_BSPC,    KC_DEL,
-              _______,                KC_ESC,     KC_ENT,     KC_TAB,                                         _______,    TG(_GAME),  _______,                KC_UP,
+              _______,                KC_ESC,     KC_ENT,     KC_TAB,                                         _______,    DF(_QWERTY),  _______,                KC_UP,
   _______,    _______,    _______,                                                                                                                KC_LEFT,    _______,    KC_RIGHT,
-              _______,                                                                                                                                        KC_DOWN
+              KC_LALT,                                                                                                                                        KC_DOWN
 ), 
 
 [_GAMENUM] =  LAYOUT_vulpes_majora(
@@ -144,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX,    KC_F11,     KC_F4,      KC_F5,      KC_F6,      KC_SCRL,                                        _______,    KC_RSFT,    KC_RCTL,    KC_RALT,    KC_RGUI,    XXXXXXX,
   XXXXXXX,    KC_F10,     KC_F1,      KC_F2,      KC_F3,      KC_PAUS,                                        _______,    _______,    _______,    _______,    _______,    XXXXXXX,
                                       _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-              _______,                _______,    _______,    _______,                                        _______,    _______,    _______,                KC_UP,
+              _______,                _______,    _______,    _______,                                        _______,    _______,    _______,                  KC_UP,
   _______,    _______,    _______,                                                                                                                KC_LEFT,    _______,    KC_RIGHT, 
               _______,                                                                                                                                        KC_DOWN
 )
@@ -169,14 +176,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const key_override_t capsword_key_override = ko_make_basic(MOD_MASK_SHIFT, CW_TOGG, KC_CAPS);
 
+const key_override_t delete_key_override = ko_make_basic(MOD_MASK_GUI, BSP_NUM, KC_DEL);
+
+// This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
     &capsword_key_override,
+    &delete_key_override,
     NULL
 };
 
 enum combo_events {
     BSPC_COMBO,
-//    DRGSCRL_COMBO,
+    DRGSCRL_COMBO,
     RF_LPRN,
     UJ_RPRN,
     DE_LBRC,
@@ -196,7 +207,7 @@ enum combo_events {
 
 
 const uint16_t PROGMEM bspc_combo[] = {KC_I, KC_O, COMBO_END};
-// const uint16_t PROGMEM drgscrl_combo[] = {KC_N, KC_H, COMBO_END};
+const uint16_t PROGMEM drgscrl_combo[] = {KC_N, KC_H, COMBO_END};
 // base stuff
 const uint16_t PROGMEM rf_lprn[] = {KC_R, HOME_F, COMBO_END};
 const uint16_t PROGMEM uj_rprn[] = {KC_U, HOME_J, COMBO_END};
@@ -218,7 +229,7 @@ const uint16_t PROGMEM gaming_ralt[] = {KC_K, KC_L, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [BSPC_COMBO] = COMBO(bspc_combo, KC_BSPC),
-//  [DRGSCRL_COMBO] = COMBO(drgscrl_combo, DRGSCRL),
+  [DRGSCRL_COMBO] = COMBO(drgscrl_combo, FP_SCROLL_MOMENT),
   // base stuff
   [RF_LPRN] = COMBO(rf_lprn, KC_LPRN),
   [UJ_RPRN] = COMBO(uj_rprn, KC_RPRN),
@@ -258,3 +269,40 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 //  return state;
 //}
 //#endif  // CHARYBDIS_AUTO_SNIPING_ON_LAYER
+
+// achordion
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+    switch (tap_hold_keycode) {
+        case BSP_NUM:
+        case TAB_SYM:
+        case ENT_FUN:
+        case SPC_NAV:
+        case BU_Z:
+            return 0;
+
+        default:
+            return 800;
+    }
+
+    return 800;
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+  switch (mod) {
+    case MOD_LSFT:
+    case MOD_RSFT:
+    case MOD_LCTL:
+    case MOD_RCTL:
+      return true;  // Eagerly apply Shift and Ctrl mods.
+
+    default:
+      return false;
+  }
+}

@@ -88,3 +88,5 @@ ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
 endif
 
 include keyboards/fingerpunch/src/rules.mk
+
+SRC += features/achordion.c
